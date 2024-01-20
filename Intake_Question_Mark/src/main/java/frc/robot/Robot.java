@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkFlex;
 import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -30,7 +31,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     bottomMotor.setIdleMode(CANSparkBase.IdleMode.kCoast);
     topMotor.setIdleMode(CANSparkBase.IdleMode.kCoast);
-    bottomMotor.follow(topMotor, true);
   }
 
   /**
@@ -41,7 +41,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    SmartDashboard.putNumber("tvel", topMotor.getEncoder().getVelocity());
+    SmartDashboard.putNumber("bvel", bottomMotor.getEncoder().getVelocity());
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -67,7 +70,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    topMotor.set(controller.getLeftX());
+    topMotor.set(controller.getAButton() ? -1 : 0);
+    bottomMotor.set(controller.getAButton() ? 1 : 0);
   }
 
   /** This function is called once when the robot is disabled. */

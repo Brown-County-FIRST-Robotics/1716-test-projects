@@ -6,7 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 
 
-public class drivetrain extends SubsystemBase {
+public class Drivetrain extends SubsystemBase {
  
 	private final CANSparkMax motor1 = new CANSparkMax(0, MotorType.kBrushless);
 	private final CANSparkMax motor2 = new CANSparkMax(0, MotorType.kBrushless);
@@ -14,7 +14,7 @@ public class drivetrain extends SubsystemBase {
 	private final CANSparkMax motor4 = new CANSparkMax(0, MotorType.kBrushless); 
 	private final MecanumDrive mecanumdrivetrain;
 	
-	public drivetrain() {
+	public Drivetrain() {
 
 		motor1.setInverted(false);
 		motor2.setInverted(true);

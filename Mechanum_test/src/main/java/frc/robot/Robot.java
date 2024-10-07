@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
   CANSparkMax motor0;
   CANSparkMax motor1;
   CANSparkMax motor2;
-  CANSparkMax motor3;
+  CANSparkMax frontRightMotor;
   MecanumDrive drive;
   XboxController controller;
   double max_speed = 0.3;
@@ -51,10 +51,7 @@ public class Robot extends TimedRobot {
    * autonomous modes using the dashboard. The sendable chooser code works with the Java
    * SmartDashboard. If you prefer the LabVIEW Dashboard, remove all of the chooser code and
    * uncomment the getString line to get the auto name from the text box below the Gyro
-   *
-   * <p>You can add additional auto modes by adding additional comparisons to the switch structure
-   * below with additional strings. If using the SendableChooser make sure to add them to the
-   * chooser code above as well.
+
    */
   @Override
   public void autonomousInit() {
@@ -72,7 +69,7 @@ public class Robot extends TimedRobot {
     motor0 = new CANSparkMax(1, MotorType.kBrushless);
     motor1 = new CANSparkMax(2, MotorType.kBrushless);
     motor2 = new CANSparkMax(3, MotorType.kBrushless);
-    motor3 = new CANSparkMax(4, MotorType.kBrushless);
+    motor3 = new CANSparkMax(4, MotorType.kBrushed);
     motor0.setInverted(true);
     motor1.setInverted(true);
     motor0.setInverted(false);
@@ -96,10 +93,6 @@ public class Robot extends TimedRobot {
   /** This function is called periodically when disabled. */
   @Override
   public void disabledPeriodic() {}
-
-  /** This function is called once when test mode is enabled. */
-  @Override
-  public void testInit() {}
 
   /** This function is called periodically during test mode. */
   @Override
